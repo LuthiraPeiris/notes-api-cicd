@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build, Push, and Deploy Docker Image
 
 on:
   push:
@@ -25,3 +25,28 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/notes-api:latest
+
+  deploy-to-ec2:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+
+    steps:
+      - name: Deploy to EC2 using SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/notes-api:latest
+
+            sudo docker stop notes-api || true
+            sudo docker rm notes-api || true
+
+            sudo docker run -d \
+              -p 8000:8000 \
+              --restart unless-stopped \
+              --name notes-api \
+              ${{ secrets.DOCKER_USERNAME }}/notes-api:latest
+
+            sudo docker ps
