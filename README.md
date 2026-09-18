@@ -1,45 +1,55 @@
-# Automated CI/CD Pipeline with GitHub Actions, Docker Hub, and AWS EC2
+# 🚀 Automated CI/CD Pipeline with GitHub Actions, Docker Hub & AWS EC2
 
-![Project Banner/Logo](./cicd.png)
-<!-- Replace the URL above with your actual image link -->
+<p align="center">
+  <img src="./cicd.png" alt="CI/CD Pipeline Architecture" width="900"/>
+</p>
 
-![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-4.x-000000?style=for-the-badge&logo=express&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+<p align="center">
+  <strong>A hands-on DevOps project demonstrating automated application deployment using GitHub Actions, Docker, Docker Hub, and Amazon EC2.</strong>
+</p>
 
----
-
-## 📝 Description
-
-This project is a simple **Node.js and Express Notes API** built as my first hands-on experience with a complete CI/CD pipeline.
-
-The application is containerized using **Docker**, the Docker image is pushed to **Docker Hub**, and the deployment is automated using **GitHub Actions** to run the latest container on an **AWS EC2 Ubuntu instance**.
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
+  <img src="https://img.shields.io/badge/Express.js-4.x-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js"/>
+  <img src="https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
+  <img src="https://img.shields.io/badge/AWS-EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS EC2"/>
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+## 📌 Project Overview
 
-| Category | Technology |
-|----------|------------|
-| **Backend** | Node.js, Express.js |
-| **Containerization** | Docker |
-| **Registry** | Docker Hub |
-| **CI/CD** | GitHub Actions |
-| **Cloud Hosting** | AWS EC2 (Ubuntu) |
-| **Remote Access** | SSH |
+This project is a simple **Node.js and Express.js Notes API** created to gain practical experience with an end-to-end **CI/CD workflow**.
 
----
+The main focus of the project is not the complexity of the API, but the process of automatically taking application source code from a GitHub repository, building a Docker image, publishing the image to Docker Hub, and deploying the latest version to an **AWS EC2 Ubuntu instance**.
 
-## 📋 Project Overview
+The complete workflow is:
 
-The API includes simple endpoints such as:
-
-```txt
-GET /
-GET /api/health
-GET /api/notes
-POST /api/notes
-DELETE /api/notes/:id
+```text
+Developer
+    │
+    ▼
+GitHub Repository
+    │
+    │ Push
+    ▼
+GitHub Actions
+    │
+    ├── Install Dependencies
+    ├── Run Tests
+    ├── Build Docker Image
+    ├── Push Image
+    │
+    ▼
+Docker Hub
+    │
+    │ Pull Latest Image
+    ▼
+AWS EC2
+    │
+    ▼
+Docker Container
+    │
+    ▼
+Notes API
